@@ -18,10 +18,10 @@ public class BankingSystemVer02 implements MenuChoice
 			
 			switch(choice) {
 			case MAKE:
+				scanner.nextLine();
 				System.out.println("┌------신규개설계좌선택------┐");
 				System.out.println("│ 1.보통계좌  2.신용신뢰계좌 │");
 				System.out.println("└----------------------------┘");
-				scanner.nextLine();
 				int select = scanner.nextInt();
 				scanner.nextLine();
 				accountManager.makeAccount(select);

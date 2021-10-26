@@ -2,9 +2,18 @@ package project2.ver02;
 
 public class NormalAccount extends Account
 {
+	public int rate; //이율
+	
+	public NormalAccount(String accountID, String customName, int accMoney)
+	{
+		super(accountID, customName, accMoney);
+	}
+	
+	
 	public NormalAccount(String accountID, String customName, int accMoney, int rate)
 	{
-		super(accountID, customName, accMoney, rate);
+		super(accountID, customName, accMoney);
+		this.rate = rate;
 	}
 	
 	@Override
@@ -14,13 +23,9 @@ public class NormalAccount extends Account
 	}
 	
 	
-	
 	@Override
 	public void showAccInfo() {
-		System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-		System.out.println(" 계좌번호: "+ accountID);
-		System.out.println(" 예금주: "+ customName);
-		System.out.println(" 잔고: "+ accMoney);
+		super.showAccInfo();
 		System.out.println(" 기본이율: "+ rate+"%");
 		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 	}

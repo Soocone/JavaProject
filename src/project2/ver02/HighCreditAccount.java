@@ -1,12 +1,15 @@
 package project2.ver02;
 
-public class HighCreditAccount extends Account
+public class HighCreditAccount extends NormalAccount
 {
+	public int rate; //이율
+	public String grade; //신용등급
 	
 	public HighCreditAccount(String accountID, String customName, int accMoney, 
 			int rate, String grade)
 	{
-		super(accountID, customName, accMoney, rate);
+		super(accountID, customName, accMoney);
+		this.rate = rate;
 		this.grade = grade;
 	}
 	
@@ -15,13 +18,11 @@ public class HighCreditAccount extends Account
 	public void deposit(int deposit)
 	{
 		if(grade =="A") 
-			rate = (rate+7);
+			accMoney = accMoney + (accMoney*(rate+7)/100) + deposit;
 		else if(grade =="B") 
-			rate = (rate+4);
+			accMoney = accMoney + (accMoney*(rate+4)/100) + deposit;
 		else if(grade =="C") 
-			rate = (rate+2);
-			
-		accMoney = accMoney + (accMoney*rate/100) + deposit;
+			accMoney = accMoney + (accMoney*(rate+2)/100) + deposit;
 	}
 	
 	

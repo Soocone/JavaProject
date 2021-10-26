@@ -18,7 +18,6 @@ public class AccountManager
 	
 	//계좌 개설
 	public void makeAccount(int select) {
-		
 		String accountID, customName, grade;
 		int accMoney, rate;
 		
@@ -34,6 +33,7 @@ public class AccountManager
 					new NormalAccount(accountID, customName, accMoney, rate);
 		}
 		else if(select ==2) {
+			scanner.nextLine();
 			System.out.print("기본이자%(정수형태로입력): "); rate = scanner.nextInt(); 
 			scanner.nextLine();
 			System.out.print("신용등급(A,B,C등급): "); grade = scanner.nextLine();
