@@ -54,6 +54,7 @@ public class AccountManager
 		System.out.print("입금액: ");
 		int deposit = scanner.nextInt();
 		
+		
 		for(int i=0 ; i<numOfAccount ; i++) {
 			if(accountNo.compareTo(myAccount[i].getAccountID())==0) {
 				if(myAccount[i].getAccMoney()>0) {
