@@ -1,4 +1,4 @@
-package project2.ver01;
+package project2.ver02;
 
 import java.util.Scanner;
 
@@ -47,6 +47,7 @@ public class AccountManager
 	//계좌 입금
 	public void depositMoney() {
 		boolean findAccount = false;
+		scanner.nextLine();
 		
 		System.out.println("계좌번호와 입금할 금액을 입력하세요.");
 		System.out.print("계좌번호: ");
@@ -54,16 +55,14 @@ public class AccountManager
 		System.out.print("입금액: ");
 		int deposit = scanner.nextInt();
 		
-		
-		
 		for(int i=0 ; i<numOfAccount ; i++) {
-			if(accountNo.compareTo(myAccount[i].getAccountID())==0) {
-				if(myAccount[i].getAccMoney()>0) {
-//					myAccount[i].getAccMoney() = 
-//						(int)(myAccount[i].getAccMoney*(myAccount[i].interest())) + deposit;
-				}
+			if(accountNo.compareTo(myAccount[i].accountID)==0) {
+				myAccount[i].deposit(deposit);
+				System.out.println("입금이 완료되었습니다.");
+				findAccount = true;				
 			}
 		}
+		
 		if(findAccount==false)
 			System.out.println("등록되지 않은 계좌번호입니다.");
 	}
@@ -80,8 +79,8 @@ public class AccountManager
 		int withdraw = scanner.nextInt();
 		
 		for(int i=0 ; i<numOfAccount ; i++) {
-			if(accountNo.compareTo(myAccount[i].getAccountID())==0) {
-//				myAccount[i].getAccMoney() -= withdraw;
+			if(accountNo.compareTo(myAccount[i].accountID) ==0) {
+				myAccount[i].accMoney -= withdraw;
 				System.out.println("출금이 완료되었습니다.");
 				findAccount = true;
 			}

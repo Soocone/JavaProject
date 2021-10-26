@@ -22,7 +22,7 @@ public class Account
 	public void interest() {
 	}
 	
-	
+	//getter setter
 	public String getAccountID() 
 		{return accountID;}
 	public void setAccountID(String accountID)
@@ -43,6 +43,5 @@ public class Account
 		{return grade;}
 	public void setGrade(String grade)
 		{this.grade = grade;}
-
 	
 }
