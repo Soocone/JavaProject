@@ -25,10 +25,6 @@ public class AutoSaverT extends Thread
 				System.out.println("자동 저장이 중지되었습니다.");
 				break;
 			} 
-			catch (Exception e)
-			{
-				System.out.println("자동 저장중 오류가 발생했습니다.");
-			}
 		}
 	}
 

@@ -260,7 +260,7 @@ public class AccountManager
 		try {
 			ObjectInputStream in = 
 					new ObjectInputStream(
-						new FileInputStream("src/project2/AutoSaveAccount.txt"));
+						new FileInputStream("src/project2/AccountInfo.obj"));
 			
 			//데이터 복원
 			while(true) {
@@ -323,19 +323,21 @@ public class AccountManager
 			
 			for(Account acc: accHashSet) {
 				if(acc instanceof HighCreditAccount) {
-					out.print(((HighCreditAccount)acc).accountID);
-					out.print(((HighCreditAccount)acc).customName);
-					out.print(((HighCreditAccount)acc).accMoney);
-					out.print(((HighCreditAccount)acc).rate);
-					out.print(((HighCreditAccount)acc).grade);
-					System.out.println();
+					out.printf("계좌번호:%s, 예금주:%s, 잔고:%d, 이율:%d, 신용등급:%s",
+							((HighCreditAccount)acc).accountID, 
+							((HighCreditAccount)acc).customName,
+							((HighCreditAccount)acc).accMoney,
+							((HighCreditAccount)acc).rate,
+							((HighCreditAccount)acc).grade);
+					out.println();
 				}
 				else if(acc instanceof NormalAccount) {
-					out.print(((NormalAccount)acc).accountID);
-					out.print(((NormalAccount)acc).customName);
-					out.print(((NormalAccount)acc).accMoney);
-					out.print(((NormalAccount)acc).rate);
-					System.out.println();
+					out.printf("계좌번호:%s, 예금주:%s, 잔고:%d, 이율:%d",
+							((NormalAccount)acc).accountID, 
+							((NormalAccount)acc).customName,
+							((NormalAccount)acc).accMoney,
+							((NormalAccount)acc).rate);
+					out.println();
 				}
 			}
 			out.close();
