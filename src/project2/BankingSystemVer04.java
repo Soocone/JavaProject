@@ -17,7 +17,7 @@ public class BankingSystemVer04 implements MenuChoice
 				MenuChoice.showMenu();
 				
 				int choice = scanner.nextInt();
-				if(choice<1 || choice>5) {
+				if(choice<1 || choice>6) {
 					NumberException ex = new NumberException();
 					throw ex;
 				}
@@ -35,9 +35,12 @@ public class BankingSystemVer04 implements MenuChoice
 				case INQUIRE:
 					accountManager.showAccInfo();
 					break;
+				case AUTOSAVE:
+					accountManager.autoSaveChoice(accountManager);
+					break;
 				case EXIT:
 					accountManager.saveAccInfo();
-					System.out.println("프로그램종료");
+					System.out.println("프로그램을 종료합니다.");
 					return;
 				}
 			}

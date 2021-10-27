@@ -2,12 +2,16 @@ package project2.ver04;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
+
 
 
 public class AccountManager 
@@ -29,11 +33,16 @@ public class AccountManager
 	}
 	
 	
+	public AccountManager()
+	{
+	}
+
+
 	//계좌 개설
 	public void makeAccount() {
-		System.out.println("┌------신규개설계좌선택------┐");
+		System.out.println("┌──────신규개설계좌선택──────┐");
 		System.out.println("│ 1.보통계좌  2.신용신뢰계좌 │");
-		System.out.println("└----------------------------┘");
+		System.out.println("└────────────────────────────┘");
 		int select = scanner.nextInt();
 		scanner.nextLine();
 		makeAccount(select);
@@ -72,7 +81,7 @@ public class AccountManager
 					return;
 				}
 			}
-				
+			
 		}
 		
 		//신용계좌 개설
@@ -228,15 +237,14 @@ public class AccountManager
 	}
 	
 	
-	//계좌정보 직렬화(프로그램 종료시 모든 계좌 객체를 파일로 저장
+	//계좌정보 직렬화
 	public void saveAccInfo() {
 		try {
 			//인스턴스를 파일에 저장하기 위해 출력스트림 생성
 			ObjectOutputStream out =
 					new ObjectOutputStream(
-							new FileOutputStream("src/project2/accountInfo.obj"));
+							new FileOutputStream("src/project2/AccountInfo.obj"));
 			
-			//파일에 저장
 			for(Account acc : accHashSet) {
 				out.writeObject(acc);
 			}
@@ -252,7 +260,7 @@ public class AccountManager
 		try {
 			ObjectInputStream in = 
 					new ObjectInputStream(
-						new FileInputStream("src/project2/accountInfo.obj"));
+						new FileInputStream("src/project2/AutoSaveAccount.txt"));
 			
 			//데이터 복원
 			while(true) {
@@ -264,11 +272,83 @@ public class AccountManager
 			in.close();
 		}
 		catch (Exception e) {
-			System.out.println("더 이상 읽을 객체가 없습니다.");
+			System.out.println("더이상 불러올 계좌가 없습니다.");
 		}
 		System.out.println("계좌 정보 복원 완료");
 	}
 	
+	
+	//자동저장선택
+	public void autoSaveChoice(AccountManager mgr) {
+		System.out.println("┌───────자동저장옵션선택──────┐");
+		System.out.println("│ 1.자동저장on  2.자동저장off │");
+		System.out.println("└─────────────────────────────┘");
+		int autoselec = scanner.nextInt();
+		scanner.nextLine();
+		autoSave(autoselec, mgr);
+	}
+	
+	AutoSaverT as1;
+	
+	//자동저장 on / off
+	public void autoSave(int autoselec, AccountManager mgr) {
+		
+		//자동저장on
+		if(autoselec == 1) {
+			if(Thread.activeCount()==2) {
+				System.out.println("이미 자동저장이 실행중입니다.");
+			}
+			else {
+				System.out.println("자동 저장을 실행합니다.");
+				//쓰레드 객체 생성
+				as1 = new AutoSaverT("ThreadName1", mgr);
+				//독립쓰레드를 종속쓰레드로 만듦
+				as1.setDaemon(true);
+				as1.start();
+			}
+		}
+		
+		//자동저장off
+		else if(autoselec ==2) {
+			as1.interrupt();
+		}
+	}
+	
+	
+	public void autoSaveFile(AccountManager mgr) {
+		try
+		{
+			PrintWriter out = new PrintWriter(
+					new FileWriter("src/project2/AutoSaveAccount.txt"));
+			
+			for(Account acc: accHashSet) {
+				if(acc instanceof HighCreditAccount) {
+					out.print(((HighCreditAccount)acc).accountID);
+					out.print(((HighCreditAccount)acc).customName);
+					out.print(((HighCreditAccount)acc).accMoney);
+					out.print(((HighCreditAccount)acc).rate);
+					out.print(((HighCreditAccount)acc).grade);
+					System.out.println();
+				}
+				else if(acc instanceof NormalAccount) {
+					out.print(((NormalAccount)acc).accountID);
+					out.print(((NormalAccount)acc).customName);
+					out.print(((NormalAccount)acc).accMoney);
+					out.print(((NormalAccount)acc).rate);
+					System.out.println();
+				}
+			}
+			out.close();
+			
+		} 
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 }
 
 //예외클래스) 숫자가 입력되지 않은 경우
