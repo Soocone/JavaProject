@@ -18,7 +18,7 @@ public class BankingSystemVer04 implements MenuChoice
 				
 				int choice = scanner.nextInt();
 				if(choice<1 || choice>6) {
-					NumberException ex = new NumberException();
+					NumErrException ex = new NumErrException();
 					throw ex;
 				}
 				
@@ -48,7 +48,7 @@ public class BankingSystemVer04 implements MenuChoice
 				scanner.nextLine();
 				System.out.println("[오류발생] 올바른 메뉴를 선택해주세요.");
 			}
-			catch (NumberException e) {
+			catch (NumErrException e) {
 				System.out.println(e.getMessage());
 			}
 			
@@ -56,8 +56,8 @@ public class BankingSystemVer04 implements MenuChoice
 		
 	}
 }
-class NumberException extends Exception {
-	public NumberException() {
+class NumErrException extends Exception {
+	public NumErrException() {
 		super("[오류발생] 올바른 숫자를 입력해주세요.");
 	}
 }
