@@ -27,7 +27,7 @@ public class AutoSaverT extends Thread
 			} 
 			catch (Exception e)
 			{
-				e.printStackTrace();
+				System.out.println("자동 저장중 오류가 발생했습니다.");
 			}
 		}
 	}
