@@ -3,14 +3,16 @@ package project2;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import project2.ver04.AccountManager;
+import project2.ver04.AutoSaverT;
 import project2.ver04.MenuChoice;
 
-public class BankingSystemVer04 implements MenuChoice
+public class BankingSystemVer04
 {
 	public static void main(String[] args)
 	{
 		Scanner scanner = new Scanner(System.in);
 		AccountManager accountManager = new AccountManager(50);
+		AutoSaverT autoSaver = new AutoSaverT(accountManager);
 		
 		while(true) {
 			try{
@@ -23,22 +25,22 @@ public class BankingSystemVer04 implements MenuChoice
 				}
 				
 				switch(choice) {
-				case MAKE:
+				case MenuChoice.MAKE:
 					accountManager.makeAccount();
 					break;
-				case DEPOSIT:
+				case MenuChoice.DEPOSIT:
 					accountManager.depositMoney();
 					break;
-				case WITHDRAW:
+				case MenuChoice.WITHDRAW:
 					accountManager.withdrawMoney();
 					break;
-				case INQUIRE:
+				case MenuChoice.INQUIRE:
 					accountManager.showAccInfo();
 					break;
-				case AUTOSAVE:
-					accountManager.autoSaveChoice(accountManager);
+				case MenuChoice.AUTOSAVE:
+					accountManager.autoSave(autoSaver);
 					break;
-				case EXIT:
+				case MenuChoice.EXIT:
 					accountManager.saveAccInfo();
 					System.out.println("프로그램을 종료합니다.");
 					return;

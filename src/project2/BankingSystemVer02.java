@@ -4,7 +4,7 @@ import java.util.Scanner;
 import project2.ver02.AccountManager;
 import project2.ver02.MenuChoice;
 
-public class BankingSystemVer02 implements MenuChoice
+public class BankingSystemVer02 
 {
 	public static void main(String[] args)
 	{
@@ -17,7 +17,7 @@ public class BankingSystemVer02 implements MenuChoice
 			int choice = scanner.nextInt();
 			
 			switch(choice) {
-			case MAKE:
+			case MenuChoice.MAKE:
 				scanner.nextLine();
 				System.out.println("┌------신규개설계좌선택------┐");
 				System.out.println("│ 1.보통계좌  2.신용신뢰계좌 │");
@@ -26,16 +26,16 @@ public class BankingSystemVer02 implements MenuChoice
 				scanner.nextLine();
 				accountManager.makeAccount(select);
 				break;
-			case DEPOSIT:
+			case MenuChoice.DEPOSIT:
 				accountManager.depositMoney();
 				break;
-			case WITHDRAW:
+			case MenuChoice.WITHDRAW:
 				accountManager.withdrawMoney();
 				break;
-			case INQUIRE:
+			case MenuChoice.INQUIRE:
 				accountManager.showAccInfo();
 				break;
-			case EXIT:
+			case MenuChoice.EXIT:
 				System.out.println("프로그램종료");
 				return;
 			}

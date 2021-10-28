@@ -5,7 +5,7 @@ import java.util.Scanner;
 import project2.ver03.AccountManager;
 import project2.ver03.MenuChoice;
 
-public class BankingSystemVer03 implements MenuChoice
+public class BankingSystemVer03
 {
 	public static void main(String[] args)
 	{
@@ -23,19 +23,19 @@ public class BankingSystemVer03 implements MenuChoice
 				}
 				
 				switch(choice) {
-				case MAKE:
+				case MenuChoice.MAKE:
 					accountManager.makeAccount();
 					break;
-				case DEPOSIT:
+				case MenuChoice.DEPOSIT:
 					accountManager.depositMoney();
 					break;
-				case WITHDRAW:
+				case MenuChoice.WITHDRAW:
 					accountManager.withdrawMoney();
 					break;
-				case INQUIRE:
+				case MenuChoice.INQUIRE:
 					accountManager.showAccInfo();
 					break;
-				case EXIT:
+				case MenuChoice.EXIT:
 					System.out.println("프로그램종료");
 					return;
 				}

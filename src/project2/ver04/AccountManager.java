@@ -278,44 +278,40 @@ public class AccountManager
 	}
 	
 	
-	//자동저장선택
-	public void autoSaveChoice(AccountManager mgr) {
+	
+	//자동저장 on / off
+	public void autoSave(AutoSaverT autoThread) {
 		System.out.println("┌───────자동저장옵션선택──────┐");
 		System.out.println("│ 1.자동저장on  2.자동저장off │");
 		System.out.println("└─────────────────────────────┘");
 		int autoselec = scanner.nextInt();
 		scanner.nextLine();
-		autoSave(autoselec, mgr);
-	}
-	
-	AutoSaverT as1;
-	
-	//자동저장 on / off
-	public void autoSave(int autoselec, AccountManager mgr) {
 		
 		//자동저장on
 		if(autoselec == 1) {
-			if(Thread.activeCount()==2) {
+			if(autoThread.isAlive()) {
 				System.out.println("이미 자동저장이 실행중입니다.");
 			}
 			else {
-				System.out.println("자동 저장을 실행합니다.");
-				//쓰레드 객체 생성
-				as1 = new AutoSaverT("ThreadName1", mgr);
 				//독립쓰레드를 종속쓰레드로 만듦
-				as1.setDaemon(true);
-				as1.start();
+				autoThread.setDaemon(true);
+				//쓰레드 실행
+				autoThread.start();
+				System.out.println("자동 저장을 실행합니다.");
 			}
 		}
 		
 		//자동저장off
 		else if(autoselec ==2) {
-			as1.interrupt();
+			if(autoThread.isAlive()) {
+				autoThread.interrupt();
+				System.out.println("자동 저장이 중지되었습니다.");
+			}
 		}
 	}
 	
 	
-	public void autoSaveFile(AccountManager mgr) {
+	public void autoSaveFile() {
 		try
 		{
 			PrintWriter out = new PrintWriter(
