@@ -17,7 +17,7 @@ public class AutoSaverT extends Thread
 			try {
 				mgr.autoSaveFile();
 				sleep(5000); //5초 동안 블럭상태로 전환
-				System.out.println("자동 저장...(5초)");
+				System.out.println("자동 저장중...(5초)");
 			}
 			catch(InterruptedException e) {
 				break;

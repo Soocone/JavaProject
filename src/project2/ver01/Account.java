@@ -29,15 +29,6 @@ public class Account
 	
 	//계좌 개설
 	public void makeAccount() {
-		System.out.println("┌──────신규개설계좌선택──────┐");
-		System.out.println("│ 1.보통계좌  2.신용신뢰계좌 │");
-		System.out.println("└────────────────────────────┘");
-		int select = scanner.nextInt();
-		scanner.nextLine();
-		makeAccount(select);
-	}
-	
-	public void makeAccount(int select) {
 		System.out.print("계좌번호: ");	accountID = scanner.nextLine();
 		System.out.print("예금주: "); customName = scanner.nextLine();
 		System.out.print("잔고: ");	accMoney = scanner.nextInt();

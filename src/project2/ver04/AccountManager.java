@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 
-
 public class AccountManager 
 {	
 	Scanner scanner = new Scanner(System.in);
@@ -22,23 +21,16 @@ public class AccountManager
 	HashSet<Account> accHashSet;
 	
 	
-	
-	public AccountManager(int num)
+	public AccountManager()
 	{
 		//멤버변수가 컬렉션으로 바뀌면서 HashSet<E> 생성
 		accHashSet = new HashSet<Account>();
-		
 		//생성자 생성과 동시에 복원할 파일 읽어오기
 		readAccInfo();
 	}
 	
 	
-	public AccountManager()
-	{
-	}
-
-
-	//계좌 개설
+	//계좌 개설 선택
 	public void makeAccount() {
 		System.out.println("┌──────신규개설계좌선택──────┐");
 		System.out.println("│ 1.보통계좌  2.신용신뢰계좌 │");
@@ -48,11 +40,10 @@ public class AccountManager
 		makeAccount(select);
 	}
 	
-	
+	//계좌 개설
 	public void makeAccount(int select) {
 		String accountID, customName, grade;
 		int accMoney, rate;
-		
 		
 		System.out.print("계좌번호: ");	accountID = scanner.nextLine();
 		System.out.print("예금주: "); customName = scanner.nextLine();
@@ -78,10 +69,9 @@ public class AccountManager
 					System.out.println("계좌 개설이 완료되었습니다.");
 				}
 				else if(openAccount.equalsIgnoreCase("n")) {
-					return;
+					System.out.println("계좌 개설을 종료합니다.");
 				}
 			}
-			
 		}
 		
 		//신용계좌 개설
@@ -92,7 +82,7 @@ public class AccountManager
 			System.out.print("신용등급(A,B,C등급): "); grade = scanner.nextLine();
 			HighCreditAccount highAcc =
 					new HighCreditAccount(accountID, customName, accMoney, rate, grade);
-			//객체 생성과 동시에 컬렉션에 add하는 방법.
+			//객체 생성과 동시에 컬렉션에 add하는 것도 가능.
 			//accHashSet.add(new HighCreditAccount(accountID, customName, accMoney, rate, grade));
 			
 			//중복계좌 체크
@@ -115,7 +105,6 @@ public class AccountManager
 	//계좌 입금
 	public void depositMoney() {
 		try {	
-			boolean findAccount = false;
 			scanner.nextLine();
 			
 			System.out.println("계좌번호와 입금할 금액을 입력하세요.");
@@ -134,6 +123,7 @@ public class AccountManager
 			}
 			
 			//이터레이터를 사용하여 계좌 보유여부 체크 및 입금
+			boolean findAccount = false;
 			Iterator<Account> itr = accHashSet.iterator();
 			while(itr.hasNext()) {
 				Account account = itr.next();
@@ -179,10 +169,12 @@ public class AccountManager
 				throw e;
 			}
 			
-			//이터레이터를 사용하여 계좌 보유여부 체크 및 입금
+			//이터레이터를 사용하여 계좌 보유여부 체크 및 출금
 			Iterator<Account> itr = accHashSet.iterator();
 			while(itr.hasNext()) {
 				Account account = itr.next();
+				
+				//잔액이 있는 경우 해당 계좌에서 출금
 				if(accountNo.compareTo(account.accountID)==0) {
 					if(account.accMoney>withdraw) {
 						account.accMoney -= withdraw;
@@ -227,6 +219,7 @@ public class AccountManager
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	
 	//계좌정보 출력 (컬렉션을 활용한 확장for문)
 	public void showAccInfo() {

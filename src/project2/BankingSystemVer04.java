@@ -11,7 +11,7 @@ public class BankingSystemVer04
 	public static void main(String[] args)
 	{
 		Scanner scanner = new Scanner(System.in);
-		AccountManager accountManager = new AccountManager(50);
+		AccountManager accountManager = new AccountManager();
 		AutoSaverT autoSaver = new AutoSaverT(accountManager);
 		
 		while(true) {
