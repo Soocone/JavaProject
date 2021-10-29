@@ -96,6 +96,7 @@ public class AccountManager
 					System.out.println("계좌 개설이 완료되었습니다.");
 				}
 				else if(openAccount.equalsIgnoreCase("n")) {
+					System.out.println("계좌 개설을 종료합니다.");
 					return;
 				}
 			}
@@ -226,7 +227,7 @@ public class AccountManager
 		for(Account acc : accHashSet) {
 			acc.showAccInfo();
 		}
-		System.out.println("==전체 정보가 출력되었습니다.==");
+		System.out.println("===전체 정보가 출력되었습니다.===");
 	}
 	
 	
@@ -265,7 +266,7 @@ public class AccountManager
 			in.close();
 		}
 		catch (Exception e) {
-			System.out.println("더이상 불러올 계좌가 없습니다.");
+			System.out.println("모든 계좌를 불러왔습니다.");
 		}
 		System.out.println("계좌 정보 복원 완료");
 	}
@@ -282,7 +283,7 @@ public class AccountManager
 		
 		//자동저장on
 		if(autoselec == 1) {
-			if(autoThread.isAlive()) {
+			if(!autoThread.isAlive()) {
 				System.out.println("이미 자동저장이 실행중입니다.");
 			}
 			else {

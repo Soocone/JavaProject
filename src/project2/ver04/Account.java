@@ -34,8 +34,7 @@ public abstract class Account implements Serializable
 	@Override
 	public int hashCode()
 	{
-		int idHCode = this.accountID.hashCode();
-		return idHCode;
+		return accountID.hashCode();
 	}
 	
 	@Override

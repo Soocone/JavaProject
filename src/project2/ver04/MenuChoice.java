@@ -6,15 +6,14 @@ public interface MenuChoice
 	int DEPOSIT=2;
 	int WITHDRAW=3;
 	int INQUIRE=4;
-	int EXIT=5;
-	int AUTOSAVE=6;
+	int AUTOSAVE=5;
+	int EXIT=6;
 	
 	public static void showMenu() {
 		System.out.println("메뉴를 선택하세요.");
-		System.out.println("┌─────────────Menu───────────────┐");
-		System.out.println("│1.계좌개설  2.입 금  3.출 금    │");
-		System.out.println("│4.계좌정보출력    5.프로그램종료│");
-		System.out.println("│6.자동저장 옵션 선택            │");
-		System.out.println("└────────────────────────────────┘");
+		System.out.println("┌─────────────Menu─────────────────────────┐");
+		System.out.println("│1.계좌개설  2.입금  3.출금  4.계좌정보출력│");
+		System.out.println("│5.자동저장 옵션     6.프로그램 종료       │");
+		System.out.println("└──────────────────────────────────────────┘");
 	}
 }
