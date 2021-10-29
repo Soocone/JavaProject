@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class AccConnect
 {
+	Scanner scanner = new Scanner(System.in);
+	
 	public String driver = "oracle.jdbc.OracleDriver";
 	public String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	
@@ -34,24 +36,4 @@ public class AccConnect
 			System.out.println("데이터베이스 연결 오류");
 		}
 	}	
-	
-	//사용자로부터 입력값을 받기 위한 메서드
-	public String scanValue(String text)
-	{
-		Scanner scanner = new Scanner(System.in);
-		System.out.print(text+": ");
-		String inputStr = scanner.nextLine();
-		
-		return inputStr;
-	}
-	
-	public int scanValue(int number)
-	{
-		Scanner scanner = new Scanner(System.in);
-		System.out.print(number+": ");
-		int inputInt = scanner.nextInt();
-		
-		return inputInt;
-	}
-	
 }

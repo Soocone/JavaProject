@@ -23,5 +23,3 @@ drop sequence seq_banking;
 
 commit;
 
-
-SELECT acc_index, acc_id, cust_name, trim(to_char(acc_money, '999,999,000')) balance FROM banking_tb ORDER BY acc_index;

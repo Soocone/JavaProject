@@ -12,7 +12,7 @@ public class BankingSystemVer04
 	{
 		Scanner scanner = new Scanner(System.in);
 		AccountManager accountManager = new AccountManager();
-		AutoSaverT autoSaver = null;
+		AutoSaverT autoSaver = null; //프로그램 실행시 쓰레드 참조변수 선언
 		
 		while(true) {
 			try{
@@ -38,6 +38,7 @@ public class BankingSystemVer04
 					accountManager.showAccInfo();
 					break;
 				case MenuChoice.AUTOSAVE:
+					//자동옵션 선택시 쓰레드 객체 생성
 					if(autoSaver==null || (!autoSaver.isAlive())) {
 						autoSaver = new AutoSaverT(accountManager);}
 					accountManager.autoSave(autoSaver);
