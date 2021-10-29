@@ -11,19 +11,11 @@ public class Account extends AccConnect
 	public String customName; //고객이름
 	public int accMoney; //잔고
 	
-	public Account(String accountID, String customName, int accMoney)
-	{
-		this.accountID = accountID;
-		this.customName = customName;
-		this.accMoney = accMoney;
-	}
-	
 	
 	//DB연결
 	public Account() {	
 		super("kosmo", "1234");
 	}
-	
 	
 	//계좌 개설
 	public void makeAccount() {
