@@ -23,6 +23,7 @@ public class Account extends AccConnect
 		String insSql = "INSERT INTO banking_tb VALUES (seq_banking.NEXTVAL, ?, ?, ?)";
 		
 		try	{
+			scanner.nextLine();
 			//prepared 객체 생성
 			psmt = con.prepareStatement(insSql);
 			
