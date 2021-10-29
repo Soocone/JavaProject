@@ -12,7 +12,7 @@ public class BankingSystemVer04
 	{
 		Scanner scanner = new Scanner(System.in);
 		AccountManager accountManager = new AccountManager();
-		AutoSaverT autoSaver = new AutoSaverT(accountManager);
+		AutoSaverT autoSaver = null;
 		
 		while(true) {
 			try{
@@ -38,6 +38,8 @@ public class BankingSystemVer04
 					accountManager.showAccInfo();
 					break;
 				case MenuChoice.AUTOSAVE:
+					if(autoSaver==null || (!autoSaver.isAlive())) {
+						autoSaver = new AutoSaverT(accountManager);}
 					accountManager.autoSave(autoSaver);
 					break;
 				case MenuChoice.EXIT:
@@ -52,6 +54,9 @@ public class BankingSystemVer04
 			}
 			catch (NumErrException e) {
 				System.out.println(e.getMessage());
+			}
+			catch(NullPointerException e) {
+				
 			}
 			
 		}

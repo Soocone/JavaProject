@@ -11,7 +11,7 @@ public interface MenuChoice
 	
 	public static void showMenu() {
 		System.out.println("메뉴를 선택하세요.");
-		System.out.println("┌─────────────Menu─────────────────────────┐");
+		System.out.println("┌────────────────<< MENU >>────────────────┐");
 		System.out.println("│1.계좌개설  2.입금  3.출금  4.계좌정보출력│");
 		System.out.println("│5.자동저장 옵션     6.프로그램 종료       │");
 		System.out.println("└──────────────────────────────────────────┘");
