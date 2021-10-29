@@ -283,7 +283,7 @@ public class AccountManager
 		
 		//자동저장on
 		if(autoselec == 1) {
-			if(!autoThread.isAlive()) {
+			if(autoThread.isAlive()) {
 				System.out.println("이미 자동저장이 실행중입니다.");
 			}
 			else {

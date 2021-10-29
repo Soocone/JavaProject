@@ -58,9 +58,7 @@ public class BankingSystemVer04
 			catch(NullPointerException e) {
 				
 			}
-			
 		}
-		
 	}
 }
 class NumErrException extends Exception {
