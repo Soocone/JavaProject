@@ -58,7 +58,8 @@ public class Account extends AccConnect
 		scanner.nextLine();
 		try {
 			//금액을 변경하는 쿼리 작성
-			String sql = "UPDATE banking_tb SET acc_money=? WHERE acc_id=?";
+			String sql = "UPDATE banking_tb SET acc_money= acc_money+ ? "
+					+ " WHERE acc_id=?";
 			//prepared 객체 생성
 			psmt = con.prepareStatement(sql);
 			
@@ -92,7 +93,8 @@ public class Account extends AccConnect
 		scanner.nextLine();
 		try {
 			//금액을 변경하는 쿼리 작성
-			String sql = "UPDATE banking_tb SET acc_money=? WHERE acc_id=?";
+			String sql = "UPDATE banking_tb SET acc_money= acc_money- ? "
+					+ " WHERE acc_id=?";
 			//prepared 객체 생성
 			psmt = con.prepareStatement(sql);
 			
